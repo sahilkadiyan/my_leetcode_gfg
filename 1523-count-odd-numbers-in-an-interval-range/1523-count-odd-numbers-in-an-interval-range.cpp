@@ -1,0 +1,17 @@
+class Solution {
+public:
+    int countOdds(int low, int high) {
+        // int count=0;
+        // for(int i=low;i<=high;i++){
+        //     if(i%2!=0) count++;
+        // }
+        // return count;
+        
+        
+        //if both the low and high are even then number of odd will be (high-low)/2;
+        //otherwise we need to add one number to it;
+        int result=(high-low)/2;
+        if(low%2!=0 || high%2!=0) result++;
+        return result;
+    }
+};
