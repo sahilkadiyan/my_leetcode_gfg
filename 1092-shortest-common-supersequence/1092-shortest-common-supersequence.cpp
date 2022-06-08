@@ -1,3 +1,5 @@
+//so first of all find the lcs and then fulfill the other conditions too !!!
+//this is clearly expalined with comments along with each line !!!
 class Solution {
 public:
     //this is to find out the lcs
@@ -29,22 +31,28 @@ public:
                    }
                }
            }
+          //here this is the string for storing the resultant string 
+          //here we are backtracking from the bottom to the up that's why we need to reverse the string too at the end !!! 
+          //so initialize i with m and j with n and run the loop until they both become zero 
+          
           string s;
           int i=m,j=n,index=dp[m][n];
           while(i>0 && j>0){
               if(text1[i-1]==text2[j-1]){
+                  //here when we find both the string char equal and then add it to the string s 
                   s=s+text1[i-1];
                   i--;
                   j--;
               }
               else{
+                  //when we don't find any equal char then take the step towards that cell which has maximum value because we come to this position by picking the max value na !!!!!!!!!!
                   if(dp[i-1][j]>dp[i][j-1])
                       i--;
                   else
                       j--;
               }
           }
-          
+          //reverse the string 
            reverse(s.begin() , s.end());
           return s;
 
@@ -53,13 +61,9 @@ public:
      
         
           }
-           // return dp[m][n];
          
-           
-     
-    
-    
     string shortestCommonSupersequence(string str1, string str2) {
+        //res is the resultant string 
         string res;
         string y=longestCommonSubsequence(str1,str2);
         int a =str1.length();
@@ -67,20 +71,26 @@ public:
        int k=0;
         int i=0;
         int j=0;
+        //run the loop until we reach the length of both the string and until k becomes equal to the length of the longest common subsequence (LCS)
         while(i<a && j<b && k<y.length()){
+            //if 1st char of both the string are equal and also equal to the 1st char of lcs then simply add the first char of lcs to res string 
             if(str1[i]==str2[j] && str1[i]==y[k]){
                 res=res+y[k];
                 i++;
                 j++;
                 k++;
             }
+            //if above condition is not satisfied then check for individual string 
             else{
+                //if 1st char of str1 is equal to 1st char of lcs string then add str2 to the res string 
                 if(str1[i]==y[k])
                     res=res+str2[j++];
                 else
                     res=res+str1[i++];
             }
         }
+        
+        //this loop is for the remaining part of the string just in case some chars left in a particular string !!!
         while(i<a){
             res=res+str1[i++];
         }
