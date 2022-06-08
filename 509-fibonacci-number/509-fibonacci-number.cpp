@@ -5,12 +5,15 @@
 class Solution {
 public:
     int fib(int n) {
-        int mem[n+2];
-        mem[0]=0,mem[1]=1;
+        vector<int> v(n+2);
+     // v.push_back(0);
+     //    v.push_back(1);
+  v[0]=0;
+        v[1]=1;
         for(int i=2;i<=n;i++){
-            mem[i]=mem[i-1]+mem[i-2];
+            v[i]=(v[i-1]+v[i-2]);
         }
-        return  mem[n];
+        return v[n];
        
     }
 };
