@@ -6,18 +6,54 @@ using namespace std;
 vector<int> find(int arr[], int n , int x )
 {
     // code here
-    vector<int> v;
-    
-    for(int i=0;i<n;i++){
-        if(arr[i]==x){
-            v.push_back(i);
-        }
-    }
-    if(v.size()==0){
-        return {-1,-1};
-    }
-    return {v[0],v[v.size()-1]};
-    
+  vector<int> v;
+  int start=0;
+  int end=n-1;
+
+  int ans1=-1;
+  
+  //left 
+  while(start<=end){
+      
+        int mid=start+(end-start)/2;
+      if(arr[mid]==x){
+          ans1=mid;
+          end=mid-1;
+      }
+      else if(x>arr[mid]){
+          start=mid+1;
+      }
+      else if(x<arr[mid]){
+          end=mid-1;
+      }
+      mid=(start+end)/2;
+  }
+  v.push_back(ans1);
+  
+  
+  //right
+  int start1=0;
+  int end1=n-1;
+  
+  int ans2=-1;
+   while(start1<=end1){
+       int mid1=start1+(end1-start1)/2;
+      if(arr[mid1]==x){
+          ans2=mid1;
+          start1=mid1+1;
+      }
+      else if(x>arr[mid1]){
+          start1=mid1+1;
+      }
+      else if(x<arr[mid1]){
+          end1=mid1-1;
+      }
+      
+  }
+  v.push_back(ans2);
+  return v;
+  
+  
       
 }
 
