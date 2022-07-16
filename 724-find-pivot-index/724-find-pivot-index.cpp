@@ -5,6 +5,8 @@ public:
         int s=0;
         int lsum=0;
         //calculate the whole sum if the array 
+        if(nums.size()==0) return -1;
+        
      for(int i=0;i<nums.size();i++) s=s+nums[i];
         for(int i=0;i<nums.size();i++){
             if(lsum==s-lsum-nums[i]) return i; 
