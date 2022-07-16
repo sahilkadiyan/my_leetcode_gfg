@@ -1,10 +1,12 @@
 class Solution {
 public:
+    //time complexity:o(n)
+    //space complexity:o(1)
+    
     vector<int> runningSum(vector<int>& nums) {
         
-       for (int i = 1; i < nums.size(); i++) {
-            // Result at index `i` is sum of result at `i-1` and element at `i`.
-            nums[i] += nums[i - 1];
+        for(int i=1;i<nums.size();i++){
+            nums[i]=nums[i]+nums[i-1];
         }
         return nums;
     }
