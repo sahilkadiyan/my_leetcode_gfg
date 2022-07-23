@@ -11,6 +11,8 @@
 class Solution {
 public:
     bool isPalindrome(ListNode* head) {
+        if(head==NULL) return true;
+        if(head->next==NULL) return true;
         stack<int> s;
         for(ListNode* temp=head;temp!=NULL;temp=temp->next){
             s.push(temp->val);
