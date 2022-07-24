@@ -9,12 +9,10 @@
  *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
  * };
  */
-#include<queue>
 class Solution {
 public:
     vector<vector<int>> levelOrder(TreeNode* root) {
-        
-        vector<vector<int>> res;
+         vector<vector<int>> res;
         queue<TreeNode*> q;
         vector<int> level;
     if(root != NULL){
