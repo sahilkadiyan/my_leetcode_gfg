@@ -2,8 +2,16 @@ class Solution {
 public:
     int coinChange(vector<int>& coins, int amount) {
         
-         int Max = amount + 1;
-        vector<int> dp(amount + 1, Max);
+    // int Max = amount + 1;
+    //     vector<int> dp(amount + 1, Max);
+        int dp[amount+1];
+    for(int i=0;i<=amount;i++){
+        dp[i]=amount+1;
+    }
+        // for(int i=0;i<amount+1;i++){
+        //     cout<<dp[i]<<" "<<endl;
+        // }
+        
         dp[0] = 0;
         for (int i = 1; i <= amount; i++) {
             for (int j = 0; j < coins.size(); j++) {
