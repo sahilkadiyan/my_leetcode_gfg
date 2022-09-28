@@ -17,6 +17,7 @@ public:
             if(cursor == nullptr) return head;
             cursor = cursor->next;
         }
+        
         ListNode* curr=head,*next1=NULL,*prev=NULL;
         int count=0;
         while(curr!=NULL && count<k){
