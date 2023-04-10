@@ -1,5 +1,9 @@
 class Solution {
 public:
+    
+    //Time Complexity:O(M*N)
+    //Space Complexity:O(1)
+    
     void setZeroes(vector<vector<int>>& matrix) {
         
          bool x=false,y=false;
