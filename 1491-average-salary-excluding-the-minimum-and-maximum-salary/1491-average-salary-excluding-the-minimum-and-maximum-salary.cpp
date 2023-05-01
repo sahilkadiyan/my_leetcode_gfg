@@ -1,16 +1,20 @@
 class Solution {
 public:
-    double average(vector<int>& salary) {
-        int n=salary.size();
-        double avg=0.0;
-        double sum=0.0;
-        int maximum=*max_element(salary.begin(),salary.end());
+    double average(vector<int>& salaries) {
+        int minSalary = INT_MAX;
+        int maxSalary = INT_MIN;
+        int sum = 0;
         
-        int minimum=*min_element(salary.begin(),salary.end());
-        for(int i=0;i<n;i++){
-            sum=sum+salary[i];
+        for (int salary : salaries) {
+            // Sum of all the salaries.
+            sum += salary;
+            // Update the minimum salary.
+            minSalary = min(minSalary, salary);
+            // Update the maximum salary.
+            maxSalary = max(maxSalary, salary);
         }
-        avg=(sum-maximum-minimum)/(n-2);
-        return avg;
+        
+        // Divide the sum by total size - 2, as we exclude minimum and maximum values.
+        return (double)(sum - minSalary - maxSalary) / (double)(salaries.size() - 2);
     }
 };
