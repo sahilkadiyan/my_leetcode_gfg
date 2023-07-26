@@ -1,17 +1,18 @@
 class Solution {
-    vector<int> dp;
 public:
-    int rob(vector<int>& nums) {
-        int len = nums.size();
-        dp = vector(len+1,-1);
-        return dfs(nums,0,len);
-    }
-
-    int dfs(vector<int>& nums, int index , int len){
-        if(index>=len) return 0;
+    int f(int index, vector<int> & nums,vector<int> &dp){
+        if(index==0) return nums[index];
+        if(index<0) return 0;
         if(dp[index]!=-1) return dp[index];
-        int x = nums[index]+dfs(nums,index+2,len);
-        return dp[index] = max(x,dfs(nums,index+1,len));
+        int pick=nums[index]+f(index-2,nums,dp);
+        int noPick=0+f(index-1,nums,dp);
+        return dp[index]= max(pick,noPick);
     }
-    
+    int rob(vector<int>& nums) {
+        int n=nums.size();
+        vector<int> dp(n,-1);
+        return f(n-1,nums,dp);
+        
+        
+    }
 };
