@@ -1,6 +1,6 @@
 class Solution {
 public: 
-    void recurdfs(int x, int y, int level, std::vector<std::vector<int>>& time, std::vector<std::vector<int>>& grid) {
+    void recurdfs(int x, int y, int level, std::vector<vector<int>>& time, vector<vector<int>>& grid) {
         if (x < 0 || x >= time.size() || y < 0 || y >= time[0].size()) {
             return; // Bad case, return, out of bounds!!
         }
@@ -27,8 +27,8 @@ public:
     }
 
 public:
-    int orangesRotting(std::vector<std::vector<int>>& grid) {
-        std::vector<std::vector<int>> time(grid.size(), std::vector<int>(grid[0].size(), INT_MAX));
+    int orangesRotting(vector<vector<int>>& grid) {
+       vector<std::vector<int>> time(grid.size(), std::vector<int>(grid[0].size(), INT_MAX));
         
         bool does_it_have_one = false;
         
@@ -65,7 +65,7 @@ public:
                         return -1;
                     }
                     
-                    max_time = std::max(max_time, time_to_reach);
+                    max_time = max(max_time, time_to_reach);
                 }
             }
         }
