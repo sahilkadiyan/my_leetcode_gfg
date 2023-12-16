@@ -1,45 +1,30 @@
 class Solution {
-    
 public:
-    //
-    int dfs(int row, int col, vector<vector<int>>& grid)
-    {
-        //when ball come out.
-        if(row>=grid.size())
-        {
-            return col;
-        }
-        //when ball go left to right.
-        if(grid[row][col] == 1 && col+1<grid[0].size() && grid[row][col+1] == 1)
-        {
-            return dfs(row+1,col+1,grid);
-        }
-        //when ball is on last column so it can not going to the right size.
-        else if(grid[row][col] == 1 && col+1>=grid[0].size())
-        {
-            return -1;
-        }
-        //when ball go to right to left.
-        else if(grid[row][col] == -1 && col-1>=0 && grid[row][col-1] == -1)
-        {
-            return dfs(row+1,col-1,grid);
-        }
-        //when ball is on 1st column so it can not going to the left side.(this is last case so i not write code for it just put in else )
-        else
-        {
-            return -1;
-        }
+    bool valid(int rsize,int csize,int r,int c){
+        if(rsize<=r||csize<=c||c<0||r<0)return false;
+        return true;
     }
-    
-    //
-    vector<int> findBall(vector<vector<int>>& grid) {
-        int m = grid.size();
-        int n = grid[0].size();
-        vector<int> answer(n);
-        for(int col = 0; col < n ; col++)
-        {
-            answer[col] = dfs(0,col,grid);
+    int DFS(vector<vector<int>>& grid,int r,int c){
+        if(r==grid.size())return c;
+        if(valid(grid.size(),grid[0].size(),r,c)){
+            if(grid[r][c]==1){
+                if(valid(grid.size(),grid[0].size(),r,c+1)&&grid[r][c+1]==1){
+                    return DFS(grid,r+1,c+1);
+                }
+            }else{
+                if(valid(grid.size(),grid[0].size(),r,c-1)&&grid[r][c-1]==-1){
+                    return DFS(grid,r+1,c-1);
+                }
+            }
         }
-        return answer;
+        return -1;
+    }
+    vector<int> findBall(vector<vector<int>>& grid){
+        int row = grid.size(),col = grid[0].size();
+        vector<int>ans(col,0);
+        for(int c = 0;c<col;c++){
+            ans[c] = DFS(grid,0,c);
+        }
+    return ans;
     }
 };
