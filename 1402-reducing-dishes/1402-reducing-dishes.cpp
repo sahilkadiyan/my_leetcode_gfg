@@ -20,6 +20,11 @@ public:
         return dp[index][time]=max(include,exclude);
         
     }
+//     int solveTab(vector<int>& satisfaction){
+        
+//     }
+    
+    
     int maxSatisfaction(vector<int>& satisfaction) {
         sort(satisfaction.begin(),satisfaction.end());
         
