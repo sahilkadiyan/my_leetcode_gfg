@@ -1,7 +1,8 @@
 class Solution {
-public:
-    void sortColors(vector<int>& nums) {
-         int tmp = 0, low = 0, mid = 0, high = nums.size() - 1;
+    public:
+    void sortColors(vector<int>& nums) 
+    {
+        int tmp = 0, low = 0, mid = 0, high = nums.size() - 1;
     
         while(mid <= high)
         {
@@ -25,6 +26,5 @@ public:
                 high--;
             }
         }
-        
     }
 };
