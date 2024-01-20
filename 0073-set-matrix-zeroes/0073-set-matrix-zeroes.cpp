@@ -1,10 +1,7 @@
 class Solution {
 public:
     void setZeroes(vector<vector<int>>& matrix) {
-        
-        
         bool x=false, y=false;  //1st row and 1st column 
-        
         int m=matrix.size();
         int n=matrix[0].size();
         
@@ -19,7 +16,6 @@ public:
                 }
             }
         }
-        
         for(int i=1;i<m;i++){
             for(int j=1;j<n;j++){
                 if(matrix[i][0]==0 || matrix[0][j]==0){
@@ -33,9 +29,6 @@ public:
         }
         if(x){
             for(int j=0;j<n;j++) matrix[0][j]=0;
-        }
-        
-        
-        
+        }  
     }
 };
