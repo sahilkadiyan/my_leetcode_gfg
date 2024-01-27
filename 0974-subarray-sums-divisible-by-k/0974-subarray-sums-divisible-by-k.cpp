@@ -1,16 +1,30 @@
 class Solution {
 public:
-    int subarraysDivByK(vector<int>& nums, int k) {
-        int n = nums.size();
-        vector<int> sums(k, 0);
-        sums[0]++;
-        int cnt = 0;
-        int currSum = 0;
-        for(int i = 0; i<n; i++) {
-            currSum = (currSum + nums[i]%k + k)%k;
-            cnt += sums[currSum];
-            sums[currSum]++;
+    int subarraysDivByK(std::vector<int>& nums, int k) {
+        int ans = 0;
+
+        std::unordered_map<int, int> map;
+        map[0] = 1;
+
+        int sum = 0;
+        int rem = 0;
+
+        for (int i = 0; i < nums.size(); ++i) {
+            sum += nums[i];
+            rem = sum % k;
+
+            if (rem < 0) {
+                rem += k;
+            }
+
+            if (map.find(rem) != map.end()) {
+                ans += map[rem];
+                map[rem]++;
+            } else {
+                map[rem] = 1;
+            }
         }
-        return cnt;
+
+        return ans;
     }
 };
