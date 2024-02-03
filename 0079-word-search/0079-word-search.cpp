@@ -1,32 +1,43 @@
-class Solution
-{
+class Solution {
 public:
-    vector<pair<int, int>> moves = {{-1, 0}, {1, 0}, {0, 1}, {0, -1}};
-    bool func(int i, int j, int k, vector<vector<char>> &board, string word)
-    {
-        int n = board.size(), m = board[0].size();
-        if (k == word.size())
-            return true;
-        bool ans = false;
-        char ch = board[i][j];
-        board[i][j] = '-1';
-        for (auto &mov : moves)
-        {
-            int p = i + mov.first, q = j + mov.second;
-            if (p >= 0 and q >= 0 and p < n and q < m and board[p][q] == word[k] and board[p][q] != '-1')
-                ans |= func(p, q, k + 1, board, word);
+    
+    bool helper(vector<vector<char>>& board,string word,int i, int j, int n , int m , int k){
+        //base case
+        if(k>=word.size()) return true;
+        if(i<0 || i>=n || j<0 || j>=m || board[i][j]=='.' || word[k]!=board[i][j] ) return false;
+        board[i][j]='.';
+        bool temp=false;
+        //let's say we are at (0,0) 
+        // (0,-1) : left 
+        // (0,1): right 
+        //(-1,0) : up
+        //(1,0) : down
+        int x[4]={0,0,-1,1};
+        int y[4]={-1,1,0,0};
+        for(int index=0;index<4;index++){
+            temp= temp || helper(board,word,i+x[index],j+y[index],n,m,k+1);
         }
-        board[i][j] = ch;
-        return ans;
+        board[i][j]=word[k];
+        return temp;
+            
     }
-
-    bool exist(vector<vector<char>> &board, string word)
-    {
-        bool ans = false;
-        for (int i = 0; i < board.size(); i++)
-            for (int j = 0; j < board[0].size(); j++)
-                if (board[i][j] == word[0] and func(i, j, 1, board, word))
-                    return true;
+    
+    bool exist(vector<vector<char>>& board, string word) {
+        int n=board.size();
+        if(n==0) return false;
+        int m=board[0].size();
+        if(word.size()==0) return false;
+        
+        
+        for(int i=0;i<n;i++){
+            for(int j=0;j<m;j++){
+                if(word[0]==board[i][j]){
+                    if(helper(board,word,i,j,n,m,0)) return true;
+                }
+            }
+        }
         return false;
+        
+        
     }
 };
