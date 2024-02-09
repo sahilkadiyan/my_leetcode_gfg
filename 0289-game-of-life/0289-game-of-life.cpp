@@ -2,7 +2,7 @@
 
 class Solution {
 public:
-    int countNeighbours(std::vector<std::vector<int>>& board, int r, int c, int rows, int cols) {
+    int countNeighbours(vector<vector<int>>& board, int r, int c, int rows, int cols) {
         int cnt = 0;
         for (int i = r - 1; i < r + 2; i++) {
             for (int j = c - 1; j < c + 2; j++) {
@@ -15,7 +15,7 @@ public:
         return cnt;
     }
 
-    void gameOfLife(std::vector<std::vector<int>>& board) {
+    void gameOfLife(vector<vector<int>>& board) {
         int rows = board.size(), cols = board[0].size();
 
         for (int i = 0; i < rows; i++) {
